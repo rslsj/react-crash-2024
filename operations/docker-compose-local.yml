@@ -1,0 +1,25 @@
+
+version: '3.8'
+volumes:
+  react_app_volume:
+    name: react_app_volume
+
+services:
+  fe:
+    ports:
+      - "4001:3000"
+    container_name: react_app
+    tty: true
+    build:
+      context: ../
+      dockerfile: operations/Dockerfile
+    volumes:
+      - ../:/app
+      # sono i dati che rimangono persistenti
+      - react_app_volume:/app/node_modules
+    networks:
+      - react_app-network
+
+networks:
+  react_app-network:
+    driver: bridge
