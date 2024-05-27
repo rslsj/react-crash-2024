@@ -31,3 +31,4 @@ stop:
 
 down:
 	$(local_compose_cmd) down
+	
